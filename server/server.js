@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const authRouter = require('./routes/authRoutes')
 require('dotenv').config();
 
 
 app.use(cors());
 app.use(express.json());
-app.get("/api", async (req, res) => {
-})
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use("/api/auth", authRouter);
 
 app.listen(process.env.SERVER_PORT, (err) => {
     if (err) {
